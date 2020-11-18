@@ -1,0 +1,201 @@
+1)
+
+package main 
+import "fmt" 
+func display(str string) { 
+    for i := 0; i < 6; i++ { 
+        fmt.Println(str) 
+    } 
+}  
+func main() { 
+    go display("Welcome") 
+ 
+    display("Kloudlearn") 
+} 
+OUTPUT:-
+
+Kloudlearn
+Kloudlearn
+Kloudlearn
+Kloudlearn
+Kloudlearn
+
+
+2)
+
+package main   
+import ( 
+    "fmt"
+    "time"
+)   
+func display(str string) { 
+    for i := 0; i < 5; i++ { 
+        time.Sleep(1 * time.Second) 
+        fmt.Println(str) 
+    } 
+} 
+  
+func main() { 
+    go display("Kloud")
+ 
+    display("one") 
+}  
+
+OUTPUT:-
+
+one
+Kloud
+Kloud
+one
+one
+Kloud
+one
+Kloud
+one
+
+3)
+
+package main 
+  
+import ( 
+    "fmt"
+    "time"
+) 
+
+func main() { 
+  
+    fmt.Println("Hello") 
+
+    go func() { 
+  
+        fmt.Println("Welcome!! to Kloudone") 
+    }() 
+  
+    time.Sleep(1 * time.Second) 
+    fmt.Println("GoodBye!! ") 
+} 
+
+
+OUTPUT:-
+
+Hello
+Welcome!! to Kloudone
+GoodBye!!
+
+4)
+
+package main 
+import ( 
+    "fmt"
+    "time"
+)  
+func fir() { 
+    arr1 := [4]string{"naveen", "navy", "kloud", "one"} 
+    for t1 := 0; t1 <= 3; t1++ {    
+        time.Sleep(150 * time.Millisecond) 
+        fmt.Printf("%s\n", arr1[t1]) 
+    } 
+} 
+
+func sec() { 
+    arr2 := [4]int{111, 222, 333, 444} 
+    for t2 := 0; t2 <= 3; t2++ { 
+      time.Sleep(500 * time.Millisecond) 
+      fmt.Printf("%d\n", arr2[t2]) 
+    } 
+} 
+ 
+func main() {  
+    fmt.Println("!...Main Go-routine Started...!") 
+    go fir() 
+    go sec()  
+    time.Sleep(3500 * time.Millisecond) 
+    fmt.Println("\n!...Main Go-routine Ended...!") 
+} 
+
+
+OUTPUT:-
+
+!...Main Go-routine Started...!
+naveen
+navy
+kloud
+111
+one
+222
+333
+444
+
+!...Main Go-routine Ended...!
+
+
+5)
+package main  
+import ( 
+    "fmt"
+    "time"
+)   
+func Aname() {  
+    arr1 := [4]string{"kloud", "one", "kloud", "learn"} 
+  
+    for t1 := 0; t1 <= 3; t1++ { 
+      
+        time.Sleep(150 * time.Millisecond) 
+        fmt.Printf("%s\n", arr1[t1]) 
+    } 
+} 
+func main() {   
+    fmt.Println("!...Main Go-routine Start...!") 
+    go Aname()   
+    time.Sleep(3500 * time.Millisecond) 
+    fmt.Println("\n!...Main Go-routine End...!") 
+} 
+
+OUTPUT:-
+
+!...Main Go-routine Start...!
+kloud
+one
+kloud
+learn
+
+!...Main Go-routine End...!
+
+6)
+
+package main  
+import ( 
+    "fmt"
+    "time"
+)   
+func Aname() {   
+  
+    for i := 0; i <= 10; i++ { 
+      
+        time.Sleep(150 * time.Millisecond) 
+        fmt.Println("",i) 
+    } 
+} 
+func main() {   
+    fmt.Println("!...Main Go-routine Start...!") 
+    go Aname()   
+    time.Sleep(3500 * time.Millisecond) 
+    fmt.Println("\n!...Main Go-routine End...!") 
+} 
+
+OUTPUT:-
+
+!...Main Go-routine Start...!
+ 0
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+ 10
+
+!...Main Go-routine End...!

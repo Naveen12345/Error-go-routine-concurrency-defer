@@ -1,0 +1,186 @@
+1)package main 
+  
+import ( 
+    "errors"
+    "fmt"
+) 
+
+func main() { 
+    err := errors.New("Sample Error") 
+    if err != nil { 
+        fmt.Print(err) 
+    } 
+}
+
+OUTPUT:-
+
+Error
+
+
+2)
+
+
+package main 
+  
+import ( 
+    "errors"
+    "fmt"
+) 
+func main() { 
+    err := errors.New("Division by zero error") 
+    if err!=nil { 
+        fmt.Print(err) 
+    } 
+}
+
+
+OUTPUT:-
+
+Division by zero error
+
+3)
+
+package main 
+  
+import ( 
+    "errors"
+    "fmt"
+) 
+func main() { 
+    err := errors.New("File not exists error") 
+    if err!=nil { 
+        fmt.Print(err) 
+    } 
+}
+
+
+OUTPUT:-
+
+File not exists error
+
+4)
+
+package main 
+  
+import ( 
+    "errors"
+    "fmt"
+) 
+func main() { 
+    err := errors.New("Arithmetic error") 
+    if err!=nil { 
+        fmt.Print(err) 
+    } 
+}
+
+OUTPUT:-
+
+Arithmetic error
+
+5)
+
+package main
+import "errors"
+import "fmt"
+import "math"
+func Sqrt(value float64)(float64, error) {
+   if(value < 0){
+      return 0, errors.New("negative number passed to Sqrt")
+   }
+   return math.Sqrt(value), nil
+}
+func main() {
+   result, err:= Sqrt(-1)
+
+   if err != nil {
+      fmt.Println(err)
+   } else {
+      fmt.Println(result)
+   }  
+   result, err = Sqrt(16)
+
+   if err != nil {
+      fmt.Println(err)
+   } else {
+      fmt.Println("square root of 16 is:",result)
+   }
+}
+
+OUTPUT:-
+
+negative number passed to Sqrt
+square root of 16 is: 4
+
+6)
+
+package main
+
+import (  
+    "fmt"
+    "os"
+)
+
+func main() {  
+    f, err := os.Open("/test.txt")
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(f.Name(), "opened successfully")
+}
+
+OUTPUT:-
+
+open /test.txt: no such file or directory
+
+7)
+
+package main
+
+import (  
+    "fmt"
+    "os"
+)
+
+func main() {  
+    f, err := os.Open("test.txt")
+    if err != nil {
+        if pErr, ok := err.(*os.PathError); ok {
+            fmt.Println("Failed to open file at path", pErr.Path)
+            return
+        }
+        fmt.Println("Generic error", err)
+        return
+    }
+    fmt.Println(f.Name(), "opened successfully")
+}
+
+OUTPUT:-
+
+Failed to open file at path test.txt
+
+8)
+
+package main
+
+import (  
+    "fmt"
+    "path/filepath"
+)
+
+func main() {  
+    files, err := filepath.Glob("[")
+    if err != nil {
+        if err == filepath.ErrBadPattern {
+            fmt.Println("Bad pattern error:", err)
+            return
+        }
+        fmt.Println("Generic error:", err)
+        return
+    }
+    fmt.Println("matched files", files)
+}
+
+OUTPUT:-
+
+Bad pattern error: syntax error in pattern
